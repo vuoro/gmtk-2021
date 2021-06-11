@@ -18,7 +18,11 @@ const Hand = () => {
 };
 
 const Card = () => {
-  return <div className="card">Card</div>;
+  return (
+    <button type="button" className="card">
+      Card
+    </button>
+  );
 };
 
 export default Hand;

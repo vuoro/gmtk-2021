@@ -1,25 +1,37 @@
 import React from "react";
 
 import useServer from "../helpers/useServer.js";
+import {
+  flatHexesInRectangle,
+  flatToPixel,
+  flatDistance,
+  pointyDistance,
+} from "../helpers/hexes.js";
 // import {  } from "../state.js";
 
 const Board = () => {
   const isServer = useServer();
 
-  const width = 5;
-  const height = 21;
-  const tiles = [];
+  const width = 7;
+  const height = 35;
 
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      tiles.push({ x, y });
-    }
-  }
+  const tiles = flatHexesInRectangle(
+    [Math.floor(width / 2), Math.floor(height / 2) - 2],
+    width,
+    height
+  ).map((hex) => {
+    const [x, y] = hex;
+    const [px, py] = flatToPixel(hex);
+    return { x, y, px, py };
+  });
 
   return (
-    <div className="board" style={{ "--width": width, "--height": height }}>
-      {tiles.map(({ x, y }) => (
-        <div key={`${x},${y}`} className="tile">
+    <div
+      className="board"
+      style={{ "--width": width * pointyDistance, "--height": (height + 0) * flatDistance }}
+    >
+      {tiles.map(({ x, y, px, py }) => (
+        <div key={`${x},${y}`} className="tile" style={{ "--px": px, "--py": py }}>
           {x},{y}
         </div>
       ))}
