@@ -1,19 +1,24 @@
 import React from "react";
 
 import useServer from "../helpers/useServer.js";
-import { useTest } from "../state.js";
+// import {} from "../state.js";
 
 const Hand = () => {
-  const isServer = useServer();
-  const { count, increment } = useTest();
+  const count = 8;
+
   return (
-    <>
-      <p style={{ opacity: isServer ? 0.5 : 1 }}>Hand: {count}</p>
-      <button type="button" onClick={increment} disabled={isServer}>
-        {isServer ? "Initializing…" : "Increment"}
-      </button>
-    </>
+    <div className="hand" style={{ "--count": count }}>
+      {[...Array(count)].map((v, index) => (
+        <div className="card-in-hand" style={{ "--index": index }} key={index}>
+          <Card />
+        </div>
+      ))}
+    </div>
   );
+};
+
+const Card = () => {
+  return <div className="card">Card</div>;
 };
 
 export default Hand;
