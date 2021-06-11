@@ -1,12 +1,15 @@
 {
-  "name": "@astrojs/starter-kit",
+  "name": "vuoro-gmtk-2021-entry",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "astro dev",
     "build": "astro build"
   },
   "devDependencies": {
-    "astro": "^0.12.9"
+    "@babel/runtime": "^7.14.5",
+    "astro": "^0.13.0"
+  },
+  "dependencies": {
+    "zustand": "^3.5.2"
   }
 }

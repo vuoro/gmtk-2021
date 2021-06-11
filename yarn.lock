@@ -115,6 +115,13 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.14.5.tgz#4cd2f346261061b2518873ffecdf1612cb032829"
   integrity sha512-TM8C+xtH/9n1qzX+JNHi7AN2zHMTiPUtspO0ZdHflW8KaskkALhMmuMHb4bCmNdv9VAPzJX3/bXqkVLnAvsPfg==
 
+"@babel/runtime@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.5.tgz#665450911c6031af38f81db530f387ec04cd9a98"
+  integrity sha512-121rumjddw9c3NCQ55KGkyE1h/nzWhU/owjhw0l4mQrkzz4x9SGS1X8gFLraHwX7td3Yo4QTL+qj0NcIzN87BA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.14.5":
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.14.5.tgz#a9bc9d8b33354ff6e55a9c60d1109200a68974f4"
@@ -546,10 +553,10 @@ astring@^1.7.4:
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.7.5.tgz#a7d47fceaf32b052d33a3d07c511efeec67447ca"
   integrity sha512-lobf6RWXb8c4uZ7Mdq0U12efYmpD1UFnyOWVJPTa3ukqZrMopav+2hdNu0hgBF0JIBFK9QgrBDfwYvh3DFJDAA==
 
-astro@^0.12.9:
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-0.12.10.tgz#4d035e9d0103bb6e44faf3a481b9ad8ca976b169"
-  integrity sha512-grK5CbXSk+YFZBFZ+jWOjnRqQK1aIzVbZI2Ttwx116jBtnBzuZ+TfY4mQdw17QlzcN+WPG5hO4EsjUR8CZxz2w==
+astro@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-0.13.0.tgz#b7eb931875660e450f60aea4443ad6283061d038"
+  integrity sha512-8QEzivVZ4zhJeSqD3XdETyMSyvo9k3hfFA1xLVjdBM3brCRrwYqpP42QaAXm0MVIhQuEQEdG9UEI0pbYNfg3VA==
   dependencies:
     "@astrojs/markdown-support" "0.1.1"
     "@astrojs/parser" "0.12.1"
@@ -602,7 +609,7 @@ astro@^0.12.9:
     sass "^1.32.13"
     shorthash "^0.0.2"
     slash "^4.0.0"
-    snowpack "^3.5.6"
+    snowpack "^3.5.7"
     source-map-support "^0.5.19"
     string-width "^5.0.0"
     tiny-glob "^0.2.8"
@@ -2911,6 +2918,11 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
+regenerator-runtime@^0.13.4:
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
+
 remark-footnotes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-3.0.0.tgz#5756b56f8464fa7ed80dbba0c966136305d8cb8d"
@@ -3189,7 +3201,7 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-snowpack@^3.5.6:
+snowpack@^3.5.7:
   version "3.5.7"
   resolved "https://registry.yarnpkg.com/snowpack/-/snowpack-3.5.7.tgz#1d56a273c97e6f8fe23800f4d3c641eefb65f356"
   integrity sha512-mMdbG9vSs7JL69/Zk2VtpduBnbfzCCCXvhJeX4GzPg4aYyKtfs0s6MA5VoQbN9HL6lZpKRy/knaigKcC4E29GA==
@@ -3711,6 +3723,11 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zustand@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.5.2.tgz#cf162a8bd1d86475bf308bc856c4d02ff13fd53c"
+  integrity sha512-HUCQI9O77/D/zvoWPNv4dwLriiiY2xtEqnQ0TVY8uaPjmOHls04Okd0w3sWUE9Ex2LaYlSk11DbPPIOZ6shEWg==
 
 zwitch@^1.0.0:
   version "1.0.5"
