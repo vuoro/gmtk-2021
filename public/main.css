@@ -7,25 +7,36 @@ body {
   line-height: 1rem;
   position: relative;
   --hand-height: 4rem;
-  padding-bottom: var(--hand-height);
+  padding: 0rem 0 2rem;
 }
 
 .board {
   position: relative;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0 auto;
   --tile-size: 1.7rem;
-  width: calc(var(--width) * var(--tile-size));
-  height: calc(var(--height) * var(--tile-size));
+  --tile-height: calc(var(--tile-size) * 0.8660254);
+  width: calc((var(--width)) * var(--tile-size));
+  height: calc(var(--height) * var(--tile-height));
+  margin-bottom: var(--hand-height);
+  user-select: none;
 }
 
 .tile {
   position: absolute;
-  left: calc(var(--px) * var(--tile-size));
-  top: calc(var(--py) * var(--tile-size));
-  border: 1px solid;
+  left: calc((var(--px)) * var(--tile-size));
+  top: calc((var(--py)) * var(--tile-height));
   width: calc(var(--tile-size) * 1.5);
-  height: calc(var(--tile-size) * 1.75);
+  height: calc(var(--tile-size) * 1.5);
+  border: 0.5px solid;
+  outline: 0.5px solid;
+  background: white;
+  display: grid;
+  place-items: center;
+}
+
+.tile:hover {
+  background-color: red;
 }
 
 .hand {
@@ -36,8 +47,10 @@ body {
   display: flex;
   justify-content: center;
   padding: 0 1rem;
+  padding-right: 2.25rem;
   height: var(--hand-height);
   pointer-events: none;
+  user-select: none;
 }
 
 .card {
@@ -66,11 +79,11 @@ body {
 }
 
 .hand:hover .card {
-  transform: translateX(-0.75rem);
+  transform: translateX(-1rem);
 }
 
 .card-in-hand:hover .card {
-  transform: translateX(-0.75rem) translateY(-3.5rem);
+  transform: translateX(-1rem) translateY(-3rem);
   transition-duration: 0.056s;
 }
 
