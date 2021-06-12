@@ -68,13 +68,10 @@ body {
   width: var(--card-width);
   height: var(--card-height);
   padding: 0.5rem;
-  position: absolute;
-  left: 50%;
-  top: 0;
   border: 1px solid;
   background-color: white;
   border-radius: 0.382rem;
-  transition: all 0.236s cubic-bezier(0.236, 0.764, 0.382, 0.856);
+  transition: all 0.236s ease-out;
   will-change: transform;
   cursor: grab;
   font-family: Avona;
@@ -93,6 +90,8 @@ body {
 
 .hand .card {
   transform: translateX(-50%);
+  position: absolute;
+  top: 0;
   left: calc(var(--offset) * -1);
 }
 
@@ -107,4 +106,22 @@ body {
 .card-in-hand:hover .card {
   transform: translateX(var(--offset)) translateY(var(--hand-offset));
   transition-duration: 0.056s;
+}
+
+.card.activated {
+  opacity: 0;
+}
+
+#pointer-follower {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+#pointer-follower-content {
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease-out;
 }
