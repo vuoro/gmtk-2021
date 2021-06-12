@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 
 import useServer from "../helpers/useServer.js";
 import { useGame } from "../state.js";
+import { Card } from "./Pieces.js";
 
 const { pow } = Math;
 const passive = { passive: true };
@@ -37,35 +38,33 @@ const HandCard = ({ card, active = false }) => {
 
   const handlePointerDown = () => {
     grabCard(card);
-
-    document.addEventListener("pointerup", handlePointerUp, passive);
-    document.addEventListener("pointercancel", handlePointerUp, passive);
-
-    return () => {
-      document.removeEventListener("pointerup", handlePointerUp);
-      document.removeEventListener("pointercancel", handlePointerUp);
-    };
   };
 
+  useEffect(() => {
+    if (active) {
+      document.addEventListener("pointerup", handlePointerUp, passive);
+      document.addEventListener("pointercancel", handlePointerUp, passive);
+
+      return () => {
+        document.removeEventListener("pointerup", handlePointerUp);
+        document.removeEventListener("pointercancel", handlePointerUp);
+      };
+    }
+  });
+
   return (
-    <div className="card-in-hand" onPointerDown={handlePointerDown}>
-      <Card card={card} active={active} />
+    <button
+      type="button"
+      className={`card-in-hand ${active ? "active" : ""}`}
+      onPointerDown={handlePointerDown}
+    >
+      <Card card={card} />
 
       {active && (
         <PointerFollower>
           <Card card={card} active />
         </PointerFollower>
       )}
-    </div>
-  );
-};
-
-const Card = ({ card, active }) => {
-  const { id } = card;
-
-  return (
-    <button type="button" className={`card ${active ? "active" : "not-active"}`}>
-      Card {id}
     </button>
   );
 };

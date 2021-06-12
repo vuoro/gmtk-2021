@@ -46,7 +46,7 @@ export const useGame = create((set, get) => {
 
       const type =
         tileBag[round((tileBag.length - 1) * (simplex.noise2D(px * 2, py * 2) * 0.5 + 0.5))];
-      return { id, x, y, px, py, type, isOnEdge };
+      return { id, x, y, px, py, type, isOnEdge, contains: [] };
     })
     .filter(({ isOnEdge, px, py }) =>
       isOnEdge && simplex.noise2D(px * 20, py * 20) > 0.236 ? false : true
@@ -63,12 +63,11 @@ export const useGame = create((set, get) => {
     activeTile: null,
     grabCard: (card) => set({ activeCard: card }),
     dropCard: (card) => {
-      const { activeTile } = get();
+      const { activeTile, tiles, cards } = get();
 
       if (activeTile) {
-        console.log("dropped", card, "on", activeTile);
-      } else {
-        console.log("dropped", card);
+        activeTile.contains.push(card);
+        set({ tiles: [...tiles], cards: cards.filter((match) => match !== card) });
       }
 
       set({ activeCard: null });

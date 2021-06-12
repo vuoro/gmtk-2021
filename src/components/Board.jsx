@@ -8,6 +8,7 @@ import {
   pointyDistance,
 } from "../helpers/hexes.js";
 import { useGame } from "../state.js";
+import { Unit } from "./Pieces.js";
 
 const { floor, abs } = Math;
 
@@ -27,7 +28,7 @@ const Board = () => {
 };
 
 const Tile = ({ tile, active }) => {
-  const { id, x, y, px, py, type } = tile;
+  const { id, x, y, px, py, type, contains } = tile;
   const offset = x / 2;
   const setActiveTile = useGame((state) => state.setActiveTile);
 
@@ -40,7 +41,8 @@ const Tile = ({ tile, active }) => {
   };
 
   return (
-    <div
+    <button
+      type="button"
       key={id}
       className={`tile ${active ? "active" : ""}`}
       style={{
@@ -53,10 +55,11 @@ const Tile = ({ tile, active }) => {
     >
       <div className="tile-content" title={id}>
         {type.name}
-        <br />
-        {id}
+        {contains.map((thing) => (
+          <Unit>Card {thing.id}</Unit>
+        ))}
       </div>
-    </div>
+    </button>
   );
 };
 
