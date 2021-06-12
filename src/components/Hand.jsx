@@ -9,7 +9,11 @@ const Hand = () => {
   return (
     <div className="hand" style={{ "--count": count }}>
       {[...Array(count)].map((v, index) => (
-        <div className="card-in-hand" style={{ "--index": index }} key={index}>
+        <div
+          className="card-in-hand"
+          style={{ "--offset": -((index / (count - 1)) * 2 - 1) * 50 - 50 + "%" }}
+          key={index}
+        >
           <Card />
         </div>
       ))}

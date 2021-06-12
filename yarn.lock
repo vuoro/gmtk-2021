@@ -663,10 +663,10 @@ astring@^1.7.4:
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.7.5.tgz#a7d47fceaf32b052d33a3d07c511efeec67447ca"
   integrity sha512-lobf6RWXb8c4uZ7Mdq0U12efYmpD1UFnyOWVJPTa3ukqZrMopav+2hdNu0hgBF0JIBFK9QgrBDfwYvh3DFJDAA==
 
-astro@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-0.13.0.tgz#b7eb931875660e450f60aea4443ad6283061d038"
-  integrity sha512-8QEzivVZ4zhJeSqD3XdETyMSyvo9k3hfFA1xLVjdBM3brCRrwYqpP42QaAXm0MVIhQuEQEdG9UEI0pbYNfg3VA==
+astro@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-0.13.1.tgz#bd2d01efb318698dabf7783df7c3114fbb58f9a5"
+  integrity sha512-LIHgJez+4wzE2fEiq6dKhVMBAuXX7S/537UzSYQnzMOuoirnKAhscqltVB/Ra584d1HLUI5swrQsI7Z0Or3Usw==
   dependencies:
     "@astrojs/markdown-support" "0.1.1"
     "@astrojs/parser" "0.12.1"
@@ -4082,6 +4082,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+simplex-noise@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-2.4.0.tgz#81b3458fb22dccc3bc8dd9a977c73797f86f523a"
+  integrity sha512-OjyDWm/QZjVbMrPxDVi9b2as+SeNn9EBXlrWVRlFW+TSyWMSXouDryXkQN0vf5YP+QZKobrmkvx1eQYPLtuqfw==
 
 slash@^3.0.0:
   version "3.0.0"
