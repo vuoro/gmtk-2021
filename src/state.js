@@ -49,7 +49,7 @@ export const useBoard = create((set, get) => {
       return { id, x, y, px, py, type, isOnEdge };
     })
     .filter(({ isOnEdge, px, py }) =>
-      isOnEdge && abs(simplex.noise2D(px * 100, py * 100)) > 0.5 ? false : true
+      isOnEdge && simplex.noise2D(px * 20, py * 20) > 0.236 ? false : true
     );
 
   return {

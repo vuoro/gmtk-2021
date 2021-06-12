@@ -3,6 +3,7 @@
   margin: 0;
   overflow-wrap: break-word;
   color: inherit;
+  font-family: inherit;
 }
 
 *:not(sub, sup) {

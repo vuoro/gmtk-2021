@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Avona";
+  src: url("https://vuoro-gmtk-2021-webfonts.netlify.app/Avona.ttf") format("truetype-variations");
+}
+
+@font-face {
+  font-family: "Avona Serif";
+  src: url("https://vuoro-gmtk-2021-webfonts.netlify.app/AvonaSerif.ttf")
+    format("truetype-variations");
+}

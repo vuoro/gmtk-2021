@@ -3,6 +3,7 @@ html {
   --card-width: 5rem;
   --card-height: 7rem;
   font-size: 5.6vmin;
+  font-family: "Avona Serif", serif;
 }
 
 body {
@@ -76,6 +77,8 @@ body {
   transition: all 0.236s cubic-bezier(0.236, 0.764, 0.382, 0.856);
   will-change: transform;
   cursor: grab;
+  font-family: Avona;
+  font-weight: 1000;
 }
 
 .card:active {
