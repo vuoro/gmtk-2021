@@ -83,6 +83,9 @@ body {
   font-family: Avona;
   font-weight: 1000;
   touch-action: none;
+  display: grid;
+  place-content: center;
+  text-align: center;
 }
 
 .card-in-hand {
@@ -130,6 +133,9 @@ body {
   will-change: transform;
   transform: translate(-50%, -50%);
   transition: transform 0.25s ease-out;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.125rem;
 }
 
 .unit {

@@ -1,15 +1,15 @@
 import React from "react";
 
 export const Card = ({ card }) => {
-  const { id } = card;
+  const { id, name } = card;
 
   return (
     <div className="card">
-      <Unit>Card {id.toString()}</Unit>
+      <Token name={name} />
     </div>
   );
 };
 
-export const Unit = ({ children }) => {
-  return <div className="unit">{children}</div>;
+export const Token = ({ name }) => {
+  return <div className="unit">{name}</div>;
 };

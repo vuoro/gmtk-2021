@@ -1,14 +1,8 @@
 import React from "react";
 
-import useServer from "../helpers/useServer.js";
-import {
-  flatHexesInRectangle,
-  flatToPixel,
-  flatDistance,
-  pointyDistance,
-} from "../helpers/hexes.js";
+import PointerFollower from "./PointerFollower.js";
+import { Card } from "./Pieces.js";
 import { useGame } from "../state.js";
-import { Unit } from "./Pieces.js";
 
 const { floor, abs } = Math;
 
@@ -28,7 +22,7 @@ const Board = () => {
 };
 
 const Tile = ({ tile, active }) => {
-  const { id, x, y, px, py, type, contains } = tile;
+  const { id, x, y, px, py, name, contains } = tile;
   const offset = x / 2;
   const setActiveTile = useGame((state) => state.setActiveTile);
 
@@ -41,25 +35,34 @@ const Tile = ({ tile, active }) => {
   };
 
   return (
-    <button
-      type="button"
-      key={id}
-      className={`tile ${active ? "active" : ""}`}
-      style={{
-        "--x": x + 1,
-        "--y": y + 3 + floor(offset),
-        "--offset": offset - floor(offset),
-      }}
-      onPointerEnter={handlePointerEnter}
-      onPointerOut={handlePointerOut}
-    >
-      <div className="tile-content" title={id}>
-        {type.name}
-        {contains.map((thing) => (
-          <Unit>Card {thing.id}</Unit>
-        ))}
-      </div>
-    </button>
+    <>
+      <button
+        type="button"
+        key={id}
+        className={`tile ${active ? "active" : ""}`}
+        style={{
+          "--x": x + 1,
+          "--y": y + 3 + floor(offset),
+          "--offset": offset - floor(offset),
+        }}
+        onPointerEnter={handlePointerEnter}
+        onPointerOut={handlePointerOut}
+      >
+        <div className="tile-content" title={id}>
+          {name}
+          {contains.map((thing) => {
+            const Component = thing.Component;
+            return <Component {...thing} />;
+          })}
+        </div>
+      </button>
+
+      {active && (
+        <PointerFollower>
+          <Card card={{ name }} />
+        </PointerFollower>
+      )}
+    </>
   );
 };
 

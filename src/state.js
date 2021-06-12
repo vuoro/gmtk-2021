@@ -2,6 +2,7 @@ import create from "zustand";
 import SimplexNoise from "simplex-noise";
 
 import { flatHexesInRectangle, flatToPixel, distanceBetween } from "./helpers/hexes.js";
+import { Token, Card } from "./components/Pieces.js";
 
 const { abs, floor, ceil, round } = Math;
 const simplex = new SimplexNoise("vuoro-gmtk-2021");
@@ -46,13 +47,18 @@ export const useGame = create((set, get) => {
 
       const type =
         tileBag[round((tileBag.length - 1) * (simplex.noise2D(px * 2, py * 2) * 0.5 + 0.5))];
-      return { id, x, y, px, py, type, isOnEdge, contains: [] };
+      return { id, x, y, px, py, ...type, isOnEdge, contains: [] };
     })
     .filter(({ isOnEdge, px, py }) =>
       isOnEdge && simplex.noise2D(px * 20, py * 20) > 0.236 ? false : true
     );
 
-  const cards = [...Array(8)].map((v, index) => ({ id: index }));
+  tiles.find(({ passable }) => passable).contains.push({ Component: Token, name: "You" });
+  const cards = [...Array(8)].map((v, index) => ({
+    id: index,
+    Component: Token,
+    name: `Card ${index}`,
+  }));
 
   return {
     width,
