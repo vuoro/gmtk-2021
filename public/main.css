@@ -72,10 +72,12 @@ body {
   background-color: white;
   border-radius: 0.382rem;
   transition: all 0.236s ease-out;
+  transition-property: transform, opacity;
   will-change: transform;
   cursor: grab;
   font-family: Avona;
   font-weight: 1000;
+  touch-action: none;
 }
 
 .card:active {
@@ -86,6 +88,7 @@ body {
   flex-basis: 3rem;
   position: relative;
   pointer-events: all;
+  touch-action: none;
 }
 
 .hand .card {
@@ -103,7 +106,8 @@ body {
   transform: translateX(-50%) translateX(calc(100% + var(--offset)));
 }
 
-.card-in-hand:hover .card {
+.card-in-hand:hover .card,
+.card.activated {
   transform: translateX(var(--offset)) translateY(var(--hand-offset));
   transition-duration: 0.056s;
 }
