@@ -4,8 +4,8 @@ import SimplexNoise from "simplex-noise";
 import { flatHexesInRectangle, flatToPixel, distanceBetween } from "./helpers/hexes.js";
 
 const { abs, floor, ceil, round } = Math;
-
 const simplex = new SimplexNoise("vuoro-gmtk-2021");
+
 const defaultTile = {
   passable: true,
   hiding: false,
@@ -31,7 +31,7 @@ for (const key in tileTypes) {
 
 const tileBag = Object.values(tileTypes);
 
-export const useBoard = create((set, get) => {
+export const useGame = create((set, get) => {
   const width = 7;
   const height = 21;
   const origo = [floor(width / 2), floor(height / 2) - 1];
@@ -52,20 +52,15 @@ export const useBoard = create((set, get) => {
       isOnEdge && simplex.noise2D(px * 20, py * 20) > 0.236 ? false : true
     );
 
+  const cards = [...Array(8)].map((v, index) => ({ id: index }));
+
   return {
     width,
     height,
     tiles,
-  };
-});
-
-export const useHand = create((set, get) => {
-  const count = 8;
-  const cards = [...Array(count)].map((v, index) => ({ id: index }));
-
-  return {
     cards,
     activeCard: null,
-    activateCard: (card) => set({ activeCard: card }),
+    setActiveCard: (card) => set({ activeCard: card }),
+    setActiveTile: (tile) => set({ activeTile: tile }),
   };
 });

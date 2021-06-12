@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import useServer from "../helpers/useServer.js";
-import { useHand } from "../state.js";
+import { useGame } from "../state.js";
 
 const { pow } = Math;
 const passive = { passive: true };
 
 const Hand = () => {
-  const { cards, activeCard } = useHand();
+  const cards = useGame((state) => state.cards);
+  const activeCard = useGame((state) => state.activeCard);
   const count = cards.length;
 
   return (
@@ -19,23 +20,22 @@ const Hand = () => {
           style={{ "--offset": -((index / (count - 1)) * 2 - 1) * 50 - 50 + "%" }}
           key={card.id}
         >
-          <Card card={card} active={activeCard === card} />
+          <HandCard card={card} active={activeCard === card} />
         </div>
       ))}
     </div>
   );
 };
 
-const Card = ({ card, active = false }) => {
-  const { id } = card;
-  const activateCard = useHand((state) => state.activateCard);
+const HandCard = ({ card, active = false }) => {
+  const setActiveCard = useGame((state) => state.setActiveCard);
 
   const handlePointerUp = () => {
-    activateCard(null);
+    setActiveCard(null);
   };
 
   const handlePointerDown = () => {
-    activateCard(card);
+    setActiveCard(card);
     document.addEventListener("pointerup", handlePointerUp, passive);
     document.addEventListener("pointercancel", handlePointerUp, passive);
 
@@ -46,21 +46,24 @@ const Card = ({ card, active = false }) => {
   };
 
   return (
-    <>
-      <button
-        type="button"
-        className={`card ${active ? "active" : "not-active"}`}
-        onPointerDown={handlePointerDown}
-      >
-        Card {id}
-      </button>
+    <div className="card-in-hand" onPointerDown={handlePointerDown}>
+      <Card card={card} active={active} />
 
       {active && (
         <PointerFollower>
-          <Card card={card} />
+          <Card card={card} active />
         </PointerFollower>
       )}
-    </>
+    </div>
+  );
+};
+
+const Card = ({ card, active }) => {
+  const { id } = card;
+  return (
+    <button type="button" className={`card ${active ? "active" : "not-active"}`}>
+      Card {id}
+    </button>
   );
 };
 
