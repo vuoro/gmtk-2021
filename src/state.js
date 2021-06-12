@@ -12,12 +12,12 @@ const defaultTile = {
 };
 
 const tileTypes = {
-  plains: {
-    name: "Plains",
-  },
   woods: {
     name: "Woods",
     hiding: true,
+  },
+  plains: {
+    name: "Plains",
   },
   rocks: {
     name: "Rocks",
@@ -43,9 +43,9 @@ export const useBoard = create((set, get) => {
 
       const distanceToCenter = distanceBetween(origo, hex);
       const isOnEdge = x === 0 || x === width - 1 || distanceToCenter > height / 2.15;
-      // abs(simplex.noise2D(x, y))
 
-      const type = tileBag[round((tileBag.length - 1) * abs(simplex.noise4D(x, y, px, py)))];
+      const type =
+        tileBag[round((tileBag.length - 1) * (simplex.noise2D(px * 2, py * 2) * 0.5 + 0.5))];
       return { id, x, y, px, py, type, isOnEdge };
     })
     .filter(({ isOnEdge, px, py }) =>
