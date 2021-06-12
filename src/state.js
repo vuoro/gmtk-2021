@@ -60,7 +60,19 @@ export const useGame = create((set, get) => {
     tiles,
     cards,
     activeCard: null,
-    setActiveCard: (card) => set({ activeCard: card }),
+    activeTile: null,
+    grabCard: (card) => set({ activeCard: card }),
+    dropCard: (card) => {
+      const { activeTile } = get();
+
+      if (activeTile) {
+        console.log("dropped", card, "on", activeTile);
+      } else {
+        console.log("dropped", card);
+      }
+
+      set({ activeCard: null });
+    },
     setActiveTile: (tile) => set({ activeTile: tile }),
   };
 });

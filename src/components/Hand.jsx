@@ -28,14 +28,16 @@ const Hand = () => {
 };
 
 const HandCard = ({ card, active = false }) => {
-  const setActiveCard = useGame((state) => state.setActiveCard);
+  const grabCard = useGame((state) => state.grabCard);
+  const dropCard = useGame((state) => state.dropCard);
 
   const handlePointerUp = () => {
-    setActiveCard(null);
+    dropCard(card);
   };
 
   const handlePointerDown = () => {
-    setActiveCard(card);
+    grabCard(card);
+
     document.addEventListener("pointerup", handlePointerUp, passive);
     document.addEventListener("pointercancel", handlePointerUp, passive);
 
@@ -60,6 +62,7 @@ const HandCard = ({ card, active = false }) => {
 
 const Card = ({ card, active }) => {
   const { id } = card;
+
   return (
     <button type="button" className={`card ${active ? "active" : "not-active"}`}>
       Card {id}

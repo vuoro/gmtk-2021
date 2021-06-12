@@ -29,6 +29,7 @@ body {
   position: relative;
   top: calc(var(--offset) * 100%);
   padding-top: 100%;
+  cursor: pointer;
 }
 
 .tile-content {
@@ -115,6 +116,7 @@ body {
 
 .card-in-hand .card.active {
   opacity: 0;
+  pointer-events: none;
 }
 
 #pointer-follower {
