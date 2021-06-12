@@ -14,28 +14,29 @@ if (!import.meta.env.SSR) {
   document.addEventListener("pointerup", handleLastPointer, passive);
 }
 
-const PointerFollower = ({ children }) => {
+const PointerFollower = ({ children, startCentered = false }) => {
   const container = document.getElementById("pointer-follower");
   const content = document.getElementById("pointer-follower-content");
 
   useEffect(() => {
     let isFirstEvent = true;
-    let lastOffsetX = 0;
-    let lastOffsetY = -100;
+    // let lastOffsetX = 0;
+    // let lastOffsetY = -100;
 
     const handlePointer = ({ clientX: x, clientY: y }) => {
       const xRatio = x / window.innerWidth;
       const yRatio = y / window.innerHeight;
-      const offsetX = isFirstEvent ? -50 : xRatio < 0.333 ? 0 : xRatio > 0.666 ? -100 : lastOffsetX;
-      const offsetY = isFirstEvent ? -50 : yRatio < 0.333 ? 0 : yRatio > 0.666 ? -100 : lastOffsetY;
+      const offsetX = isFirstEvent && startCentered ? -50 : xRatio < 0.5 ? 0 : -100;
+      const offsetY =
+        isFirstEvent && startCentered ? -50 : yRatio < 0.25 ? 0 : yRatio > 0.75 ? -100 : -50;
 
-      if (!isFirstEvent) {
-        lastOffsetX = offsetX;
-        lastOffsetY = offsetY;
-      }
+      // if (!isFirstEvent) {
+      // lastOffsetX = offsetX;
+      // lastOffsetY = offsetY;
+      // }
 
       container.style.setProperty("transform", `translate(${x}px, ${y}px)`);
-      content.style.setProperty("transform", `translate(${offsetX}%, ${offsetY}%) scale(${0.618})`);
+      content.style.setProperty("transform", `translate(${offsetX}%, ${offsetY}%)`);
 
       isFirstEvent = false;
     };

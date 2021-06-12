@@ -60,7 +60,7 @@ const HandCard = ({ card, active = false }) => {
       <Card card={card} />
 
       {active && (
-        <PointerFollower>
+        <PointerFollower startCentered>
           <Card card={card} active />
         </PointerFollower>
       )}

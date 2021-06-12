@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PointerFollower from "./PointerFollower.js";
 import { Card } from "./Pieces.js";
@@ -22,16 +22,27 @@ const Board = () => {
 };
 
 const Tile = ({ tile, active }) => {
+  const [inspecting, setInspecting] = useState(false);
+  const setActiveTile = useGame((state) => state.setActiveTile);
+
   const { id, x, y, px, py, name, contains } = tile;
   const offset = x / 2;
-  const setActiveTile = useGame((state) => state.setActiveTile);
 
   const handlePointerEnter = () => {
     setActiveTile(tile);
   };
 
+  const handlePointerDown = () => {
+    setInspecting(true);
+  };
+
   const handlePointerOut = () => {
     setActiveTile(null);
+    setInspecting(false);
+  };
+
+  const handlePointerUp = () => {
+    setInspecting(false);
   };
 
   return (
@@ -47,6 +58,8 @@ const Tile = ({ tile, active }) => {
         }}
         onPointerEnter={handlePointerEnter}
         onPointerOut={handlePointerOut}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
       >
         <div className="tile-content" title={id}>
           {name}
@@ -57,9 +70,12 @@ const Tile = ({ tile, active }) => {
         </div>
       </button>
 
-      {active && (
+      {inspecting && (
         <PointerFollower>
           <Card card={{ name }} />
+          {contains.map((thing) => {
+            return <Card card={thing} />;
+          })}
         </PointerFollower>
       )}
     </>

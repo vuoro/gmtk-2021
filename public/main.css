@@ -1,7 +1,7 @@
 html {
   --hand-offset: -3rem;
-  --card-width: 5rem;
-  --card-height: 7rem;
+  --card-width: 4rem;
+  --card-height: 6rem;
   font-size: 4.5vmin;
   font-family: "Avona Serif", serif;
 }
@@ -93,6 +93,8 @@ body {
   position: relative;
   pointer-events: all;
   touch-action: none;
+  border: none;
+  background: none;
 }
 
 .hand .card {
@@ -116,7 +118,7 @@ body {
   transition-duration: 0.056s;
 }
 
-.card-in-hand .card.active {
+.card-in-hand.active .card {
   opacity: 0;
   pointer-events: none;
 }
@@ -127,15 +129,18 @@ body {
   top: 0;
   pointer-events: none;
   will-change: transform;
+  max-width: 50vw;
 }
 
 #pointer-follower-content {
   will-change: transform;
   transform: translate(-50%, -50%);
   transition: transform 0.25s ease-out;
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 0.125rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.125rem;
+  padding: 0.5rem;
 }
 
 .unit {
