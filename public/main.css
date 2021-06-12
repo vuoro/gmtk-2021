@@ -107,12 +107,12 @@ body {
 }
 
 .card-in-hand:hover .card,
-.card.activated {
+.card.active {
   transform: translateX(var(--offset)) translateY(var(--hand-offset));
   transition-duration: 0.056s;
 }
 
-.card.activated {
+.card.active {
   opacity: 0;
 }
 

@@ -59,12 +59,13 @@ export const useBoard = create((set, get) => {
   };
 });
 
-export const useTest = create((set) => {
+export const useHand = create((set, get) => {
+  const count = 8;
+  const cards = [...Array(count)].map((v, index) => ({ id: index }));
+
   return {
-    count: 0,
-    increment: () =>
-      set((state) => ({
-        count: state.count + 1,
-      })),
+    cards,
+    activeCard: null,
+    activateCard: (card) => set({ activeCard: card }),
   };
 });

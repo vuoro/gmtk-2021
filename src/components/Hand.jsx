@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import useServer from "../helpers/useServer.js";
-// import {} from "../state.js";
+import { useHand } from "../state.js";
 
 const { pow } = Math;
 const passive = { passive: true };
 
 const Hand = () => {
-  const count = 8;
-  const cards = [...Array(count)].map((v, index) => ({ id: index }));
+  const { cards, activeCard } = useHand();
+  const count = cards.length;
 
   return (
     <div className="hand" style={{ "--count": count }}>
@@ -19,23 +19,23 @@ const Hand = () => {
           style={{ "--offset": -((index / (count - 1)) * 2 - 1) * 50 - 50 + "%" }}
           key={card.id}
         >
-          <Card card={card} />
+          <Card card={card} active={activeCard === card} />
         </div>
       ))}
     </div>
   );
 };
 
-const Card = ({ card }) => {
+const Card = ({ card, active = false }) => {
   const { id } = card;
-  const [activated, setActivated] = useState(false);
+  const activateCard = useHand((state) => state.activateCard);
 
   const handlePointerUp = () => {
-    setActivated(false);
+    activateCard(null);
   };
 
   const handlePointerDown = () => {
-    setActivated(true);
+    activateCard(card);
     document.addEventListener("pointerup", handlePointerUp, passive);
     document.addEventListener("pointercancel", handlePointerUp, passive);
 
@@ -49,13 +49,13 @@ const Card = ({ card }) => {
     <>
       <button
         type="button"
-        className={`card ${activated ? "activated" : "not-activated"}`}
+        className={`card ${active ? "active" : "not-active"}`}
         onPointerDown={handlePointerDown}
       >
         Card {id}
       </button>
 
-      {activated && (
+      {active && (
         <PointerFollower>
           <Card card={card} />
         </PointerFollower>
